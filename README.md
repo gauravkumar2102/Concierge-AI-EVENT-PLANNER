@@ -104,11 +104,4 @@ Returns all past searches, newest first (max 20).
 ### `DELETE /api/venues/:id`
 Removes a single record by ID.
 
-## Deployment
-
-### Vercel / Render / Railway
-
-1. Push repo to GitHub
-2. Set environment variables in the platform dashboard
-3. Set start command: `node server.js`
 4. Use a **MongoDB Atlas** connection string for `MONGODB_URI`
