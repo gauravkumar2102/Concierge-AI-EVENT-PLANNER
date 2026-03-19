@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concierge — AI Event Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <header>
+    <div class="brand">
+      <span class="brand-icon">◈</span>
+      <span class="brand-name">Concierge</span>
+    </div>
+    <nav class="nav-right">
+      <span class="nav-pill">AI EVENT PLANNER</span>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-label">AI EVENT PLANNER</div>
+      <h1>Your next offsite,<br /><em>beautifully planned.</em></h1>
+      <p class="hero-sub">
+        Tell us about your event in plain English — team size, location preference,
+        duration, budget. Our AI finds the perfect venue.
+      </p>
+
+      <div class="search-box">
+        <div class="search-inner">
+          <label class="search-label" for="query-input">Describe your event</label>
+          <textarea
+            id="query-input"
+            placeholder='e.g. "A 12-person sales team retreat near the beach for 2 days, budget around $5k"'
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="search-actions">
+          <span class="hint">Ctrl + Enter to submit</span>
+          <button id="search-btn" onclick="handleSearch()">
+            <span id="btn-label">Plan My Event</span>
+            <span id="btn-spinner" class="spinner hidden"></span>
+          </button>
+        </div>
+      </div>
+
+      <p id="error-msg" class="error-msg hidden"></p>
+    </section>
+
+    <section id="result-section" class="hidden result-section">
+      <div class="section-header">
+        <h2>AI Proposal</h2>
+        <span class="fresh-badge">Just generated</span>
+      </div>
+      <div id="result-card"></div>
+    </section>
+
+    <section id="history-section" class="history-section">
+      <div class="section-header">
+        <h2>Search History</h2>
+        <span id="history-count" class="count-badge"></span>
+      </div>
+      <div id="history-grid" class="history-grid"></div>
+      <p id="empty-msg" class="empty-msg">No searches yet — try one above!</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Concierge</span>
+    <span class="dot">·</span>
+    <span>Node.js · MongoDB · Gemini AI</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
