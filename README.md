@@ -15,7 +15,7 @@ https://github.com/user-attachments/assets/ac0f49d4-b79a-4426-8513-d776ef003044
 |----------|-----------------------------------|
 | Runtime  | Node.js (ESM modules)             |
 | Server   | Express.js                        |
-| AI       | Google Gemini 1.5 Flash           |
+| AI       | gemini-3-flash-preview            |
 | Database | MongoDB + Mongoose                |
 | Frontend | Vanilla HTML / CSS / JS           |
 
