@@ -2,6 +2,13 @@
 
 A full-stack AI-powered corporate event planning platform. Describe your event in plain English and get a structured venue proposal, stored persistently in MongoDB.
 LIVE LINK-https://concierge-ai-event-planner.vercel.app
+
+
+
+https://github.com/user-attachments/assets/ac0f49d4-b79a-4426-8513-d776ef003044
+
+
+
 ## Tech Stack
 
 | Layer    | Technology                        |
