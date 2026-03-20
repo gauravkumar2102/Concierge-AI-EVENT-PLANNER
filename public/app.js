@@ -1,6 +1,6 @@
 const API = "/api/venues";
 
-
+// ── boot ────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   loadHistory();
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
+// ── handle search submit ────────────────────────────
 async function handleSearch() {
   const input = document.getElementById("query-input");
   const query = input.value.trim();
@@ -40,7 +40,11 @@ async function handleSearch() {
 
     showResult(data);
     input.value = "";
-    loadHistory();
+
+    // only reload history if it was actually saved to db
+    if (data._id) {
+      loadHistory();
+    }
 
     document
       .getElementById("result-section")
@@ -52,17 +56,17 @@ async function handleSearch() {
   }
 }
 
-
+// ── render the featured result card ────────────────
 function showResult(venue) {
   const section = document.getElementById("result-section");
   const container = document.getElementById("result-card");
 
   container.innerHTML = buildCard(venue, true);
-  container.dataset.id = venue._id;
+  container.dataset.id = venue._id || "";
   section.classList.remove("hidden");
 }
 
-
+// ── load history from the database ─────────────────
 async function loadHistory() {
   try {
     const res = await fetch(API);
@@ -89,11 +93,11 @@ async function loadHistory() {
 
 // ── delete a saved record ───────────────────────────
 async function deleteVenue(id) {
+  if (!id) return;
   try {
     const res = await fetch(`${API}/${id}`, { method: "DELETE" });
     if (!res.ok) throw new Error("Delete failed");
 
-    // hide featured card if it matches
     const resultCard = document.getElementById("result-card");
     if (resultCard.dataset.id === id) {
       document.getElementById("result-section").classList.add("hidden");
@@ -111,16 +115,25 @@ function buildCard(venue, featured) {
     .map((a) => `<span class="amenity">${a}</span>`)
     .join("");
 
-  const date = new Date(venue.createdAt).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  const date = venue.createdAt
+    ? new Date(venue.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+    : "Just now";
 
   const meta = [venue.location, venue.capacity].filter(Boolean).join(" · ");
 
+  // show a small notice if the result was not saved to db
+  const unsavedNotice = venue.savedToDb === false
+    ? `<div class="unsaved-notice">⚠ Result not saved — database unavailable</div>`
+    : "";
+
+  // only show delete button if it has a real db id
+  const deleteBtn = venue._id
+    ? `<button class="btn-delete" onclick="deleteVenue('${venue._id}')">Remove</button>`
+    : "";
+
   return `
-    <div class="venue-card ${featured ? "is-featured" : ""}" data-id="${venue._id}">
+    <div class="venue-card ${featured ? "is-featured" : ""}" data-id="${venue._id || ""}">
+      ${unsavedNotice}
       <div class="card-top">
         <div class="venue-name">${venue.venueName}</div>
         <span class="cost-tag">${venue.estimatedCost}</span>
@@ -134,7 +147,7 @@ function buildCard(venue, featured) {
       <div class="card-footer">
         <span class="query-text">"${venue.userQuery}"</span>
         <span class="card-date">${date}</span>
-        <button class="btn-delete" onclick="deleteVenue('${venue._id}')">Remove</button>
+        ${deleteBtn}
       </div>
     </div>
   `;

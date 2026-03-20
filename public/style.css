@@ -1,11 +1,11 @@
-
+/* ─── reset ──────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-
+/* ─── variables ──────────────────────────────────── */
 :root {
   --bg:           #080a0f;
   --surface:      #0e1117;
@@ -27,7 +27,7 @@
   --transition:   0.2s ease;
 }
 
-
+/* ─── base ───────────────────────────────────────── */
 html { scroll-behavior: smooth; }
 
 body {
@@ -41,7 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-
+/* ─── background effects ─────────────────────────── */
 .bg-grid {
   position: fixed;
   inset: 0;
@@ -118,7 +118,7 @@ main {
   padding: 0 32px 100px;
 }
 
-
+/* ─── hero ───────────────────────────────────────── */
 .hero {
   padding: 88px 0 72px;
   text-align: center;
@@ -157,7 +157,7 @@ main {
   line-height: 1.75;
 }
 
-
+/* ─── search box ─────────────────────────────────── */
 .search-box {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -241,7 +241,7 @@ button#search-btn:hover  { opacity: 0.88; }
 button#search-btn:active { transform: scale(0.97); }
 button#search-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
-
+/* ─── spinner ────────────────────────────────────── */
 .spinner {
   width: 13px;
   height: 13px;
@@ -497,4 +497,16 @@ footer {
   .venue-card { padding: 22px 20px; }
   .card-top   { flex-direction: column; }
   .search-actions { flex-direction: column; align-items: flex-end; gap: 10px; }
+}
+
+/* ── unsaved notice ──────────────────────────────── */
+.unsaved-notice {
+  background: rgba(232, 168, 48, 0.08);
+  border: 1px solid rgba(232, 168, 48, 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--amber);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+  padding: 8px 14px;
 }
