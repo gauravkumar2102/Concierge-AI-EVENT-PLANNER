@@ -123,7 +123,7 @@ function buildCard(venue, featured) {
 
   // show a small notice if the result was not saved to db
   const unsavedNotice = venue.savedToDb === false
-    ? `<div class="unsaved-notice">⚠ Result not saved — database unavailable</div>`
+    ? `<div class="unsaved-notice">⚠ Result not saved — database server Down</div>`
     : "";
 
   // only show delete button if it has a real db id
